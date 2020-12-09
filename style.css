@@ -18,13 +18,14 @@ body {
 
 }
 
-.container {
+.page-container {
   margin: 4rem 1.5rem;
   border-radius: 10px;
   background-color: white;
   box-shadow: 0 -1px 35px -12px hsl(212, 23%, 69%);
   display: flex;
   flex-direction: column;
+  width: 85%;
 }
 
 h2 {
@@ -45,14 +46,14 @@ line-height: 1.8;
   border-top-right-radius: 10px;
 }
 
-.text-container {
+.article-container {
   padding: 2rem;
   
 }
 
 .author-info {
   display: grid;
-  width: 100%;
+  height: 50px;
   grid-template-columns: 1fr 3fr 2fr;
   align-items: center;
   justify-content: center;
@@ -78,25 +79,51 @@ line-height: 1.8;
   opacity: 60%;
 }
 
-.share {
+#share-img {
   justify-self: flex-end;
-  height: 40px;
   width: 40px;
+  padding: 10px;
   background-color: hsl(210, 46%, 95%);
   border-radius: 50%;
-  display: flex;
 }
 
-#share-img {
-  width: 20px;
-  margin: auto;
+.social-bar {
+  display: none;
+}
+
+
+/* Small Screen Active States */
+.author-info.active {
+  display: none;
+}
+
+.social-bar.active {
+  background-color: hsl(217, 19%, 35%);
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr 2fr;
+  justify-content: center;
+  align-items: center;
+  height: 70px;
+  padding: 1rem 2rem;
+}
+
+.share-text {
+  letter-spacing: 5px;
+  color: hsl(212, 23%, 69%);
+}
+
+#share-img.active {
+  opacity: 50%;
 }
 
 
 @media (min-width: 700px) {
 
-  .container {
+  .page-container {
     flex-direction: row;
+    position: relative;
     width: 700px;
     height: 300px;
   }
@@ -118,8 +145,45 @@ line-height: 1.8;
     right: 0;
   }
 
-  .author-info {
+  .bottom-bar {
     margin-top: 1rem;
   }
 
+
+  /* Large Screen Active State */
+
+  .author-info.active {
+  display: grid;
+  }
+
+  .social-bar.active {
+    position: absolute;
+    z-index: 1;
+    justify-content: space-evenly;
+    display: flex;
+    border-radius: 10px;
+    height: 50px;
+    right: -65px;
+    bottom: 85px;
+  }
+
+  .social-bar.active::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-top: 15px solid hsl(217, 19%, 35%);
+    top: 100%;
+    left: 45%;
+  }
+
+  .social-icon {
+    padding: 0.5rem;
+  }
+
+  #share-img.active {
+    display: none;
+  }
 }
